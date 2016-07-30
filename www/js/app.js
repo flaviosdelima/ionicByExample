@@ -5,9 +5,11 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform) {
+(function() {
+  var app = angular.module('starter', ['ionic', 'youtube-embed','starter.controllers', 'starter.services']);
+
+app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -77,6 +79,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
+    .state('tab.api-videos', {
+      url: '/api-videos',
+      views: {
+        'tab-videos': {
+          templateUrl: 'templates/api-videos.html',
+          controller: 'ApiVideosCtrl'
+        }
+      }
+    })    
+    
   .state('tab.account', {
     url: '/account',
     views: {
@@ -91,3 +103,4 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $urlRouterProvider.otherwise('/tab/dash');
 
 });
+}());
